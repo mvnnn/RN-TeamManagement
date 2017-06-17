@@ -1,8 +1,10 @@
 import React from 'react'
-import { TouchableHighlight, View, Text, StyleSheet } from 'react-native'
+import { TouchableHighlight, View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 
 import { connect } from 'react-redux'
 import { fetchData } from '../actions'
+const {height, width} = Dimensions.get('window')
+import { Card, Avatar, Divider } from 'react-native-material-design'
 
 let styles
 
@@ -26,10 +28,30 @@ const TeamMembers = (props) => {
       {
         people.length ? (
           people.map((person, i) => {
-            return <View key={i} >
-              <Text>Name: {person.first_name}</Text>
-              <Text>Birth Year: {person.last_name}</Text>
-            </View>
+            return <Card key={i} style={{flexDirection:'row', marginTop: -5}}>
+                          <View style={{flexDirection:'column'}}>
+                          <TouchableHighlight
+                            key={i}
+                            underlayColor="#666666">
+                            <View style={{flexDirection:'row'}}>
+                            <Card.Body>
+                              <View style={{flexDirection:'row'}}>
+                              <Avatar image={<Image source= {require("../images/people.png")} /> } backgroundColor="paperGrey"/>
+                            <View style={{flexDirection:'column'}}>
+                            <View style={{marginLeft:5,flexDirection:'row'}}>
+                              <Text style={{color:'black'}}>{person['first_name']}</Text>
+                              <Text style={{marginLeft:5,color:'black'}}>{person['last_name']}</Text>
+                              </View>
+                              <Text style={{marginLeft:5}}>{person['mobile_no']}</Text>
+                              <Text style={{marginLeft:5}}>{person['email']}</Text>
+                              </View>
+                              </View>
+                            </Card.Body>
+                          </View>
+                          </TouchableHighlight>
+                          <Divider/>
+                        </View>
+                        </Card>
           })
         ) : null
       }

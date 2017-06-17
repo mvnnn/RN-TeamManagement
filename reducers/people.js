@@ -13,18 +13,21 @@ export default function peopleReducer (state = initialState, action) {
         people: [],
         isFetching: true
       }
+
     case FETCHING_PEOPLE_SUCCESS:
       return {
         ...state,
         isFetching: false,
         people: action.data
       }
+
     case FETCHING_PEOPLE_FAILURE:
       return {
         ...state,
         isFetching: false,
         error: true
       }
+
     case ADD_MEMBER:
     state.people.push({ first_name: action.first_name, last_name:action.last_name, email:action.email, mobile_no:action.mobile_no, role:action.role })
     return {
