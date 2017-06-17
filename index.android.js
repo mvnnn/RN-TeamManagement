@@ -1,53 +1,45 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
+import React from 'react'
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+  AppRegistry
+} from 'react-native'
 
-export default class Team extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
+import { Provider } from 'react-redux'
+import configureStore from './configureStore'
+// import App from './app'
+import TeamMembers from './components/TeamMembers'
+import AddMember from './components/AddMember'
+import {
+  Scene,
+  Reducer,
+  Router,
+  Switch,
+  Modal,
+  Actions,
+  ActionConst,
+} from 'react-native-router-flux';
+const store = configureStore()
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+const onExitApp = () => {
+  Alert.alert(
+    'Exit',
+    'Are you sure you want to exit this app',
+    [
+      { text: 'Cancel', onPress: () => {} },
+      { text: 'YES', onPress: () => BackAndroid.exitApp() },
+    ]
+  );
+  return true;
+};
 
-AppRegistry.registerComponent('Team', () => Team);
+const Team = () => (
+    <Provider store={store}>
+      <Router onExitApp={onExitApp}>
+    <Scene key="root" navigationBarStyle={{backgroundColor:'#944dff'}} titleStyle={{color:'white'}} backButtonImage={require('./images/back.png')} >
+      <Scene key="teamMembers" initial={true} component={TeamMembers} title="Team Members" onRight={() => Actions.addMember()} rightButtonImage={require('./images/plus.png')} />
+      <Scene key="addMember" component={AddMember} title="add a team member" onRight={() => Actions.teamMembers()} rightButtonImage={require('./images/close.png')} />
+    </Scene>
+    </Router>
+    </Provider>
+)
+
+AppRegistry.registerComponent('Team', () => Team)
