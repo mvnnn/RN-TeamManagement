@@ -31,6 +31,17 @@ export function getPeopleFailure() {
   }
 }
 
+export function addMember(first_name, last_name, email, contact_no, role) {
+  return {
+    type: ADD_MEMBER,
+    first_name,
+    last_name,
+    email,
+    contact_no,
+    role
+  }
+}
+
 export function editMember(first_name, last_name, email, contact_no, role) {
   return {
     type: EDIT_MEMBER,

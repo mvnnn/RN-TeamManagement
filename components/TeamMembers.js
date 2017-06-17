@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { TouchableHighlight, View, Text, StyleSheet, Dimensions, Image } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -10,19 +10,25 @@ import {Scene, Actions, Router} from 'react-native-router-flux'
 
 let styles
 
-const TeamMembers = (props) => {
+class TeamMembers extends Component {
+  constructor(props) {
+   super(props);
+ }
+
+ componentDidMount(){
+   this.props.getPeople();
+ }
+
+ render() {
   const {
     container,
     text,
     button,
     buttonText
   } = styles
-  const { people, isFetching } = props.people;
+  const { people, isFetching } = this.props.people;
   return (
     <View style={container}>
-      <TouchableHighlight style={button} onPress={() => props.getPeople()}>
-        <Text style={buttonText}>Load People</Text>
-      </TouchableHighlight>
       {
         isFetching && <Text>Loading</Text>
       }
@@ -59,6 +65,7 @@ const TeamMembers = (props) => {
       }
     </View>
   )
+}
 }
 
 styles = StyleSheet.create({

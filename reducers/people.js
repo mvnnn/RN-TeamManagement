@@ -37,7 +37,15 @@ export default function peopleReducer (state = initialState, action) {
     }
 
     case EDIT_MEMBER:
-    state.people.push({ first_name: action.first_name, last_name:action.last_name, email:action.email, mobile_no:action.mobile_no, role:action.role })
+    function search(email, people){
+    for (let i=0; i < people.length; i++) {
+        if (people[i].email === email) {
+            return i;
+        }
+      }
+    }
+    var ObjectIndex = search(action.email, state.people);
+    state.people[ObjectIndex] = { first_name: action.first_name, last_name:action.last_name, email:action.email, mobile_no:action.mobile_no, role:action.role } ;
     return {
       ...state,
       isFetching: false,
