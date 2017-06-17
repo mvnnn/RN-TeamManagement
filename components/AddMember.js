@@ -27,10 +27,15 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     margin: 10
   },
-  subTitle:{
+  subTitle1:{
     fontWeight:'bold',
     color:'black',
     fontSize:15,
+    padding:10
+  },
+  subTitle:{
+    color:'grey',
+    fontSize:17,
     padding:10
   },
   radioButton:{
@@ -97,7 +102,8 @@ class AddMember extends Component {
     //  const {dispatch} = this.props;
     return (
       <View style={{paddingTop:50}}>
-      <Text style={styles.subTitle}>Info</Text>
+      <Text style={styles.subTitle}>Set email, location and role.</Text>
+      <Text style={styles.subTitle1}>Info</Text>
       <TextInput
         placeholder="Enter First Name"
         placeholderTextColor="grey"
@@ -130,7 +136,7 @@ class AddMember extends Component {
         onChange={this.mobileNumberChange.bind(this)}
         value={this.state.mobile_no}
       />
-      <Text style={styles.subTitle}>Role</Text>
+    <Text style={styles.subTitle1}>Role</Text>
       <RadioForm
           radio_props={radio_props}
           initial={0}
@@ -144,7 +150,7 @@ class AddMember extends Component {
         <View style={{justifyContent: 'center', alignItems: 'center',paddingTop:15}}>
           <TouchableHighlight
             style={styles.button}
-            onPress={() => this.props.addPeople(this.state.first_name,this.state.last_name,this.state.email,this.state.mobile_no, this.state.value)}
+            onPress={() => this.props.addMember(this.state.first_name,this.state.last_name,this.state.email,this.state.mobile_no, this.state.value)}
             underlayColor="#b380ff">
             <Text style={styles.buttonText}>Save</Text>
           </TouchableHighlight>
@@ -157,13 +163,13 @@ class AddMember extends Component {
 
 function mapStateToProps (state) {
   return {
-    people: state.people
+    member: state.member
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    addPeople: (first_name,last_name,email,mobile_no,value) => dispatch(addMember(first_name,last_name,email,mobile_no,value))
+    addMember: (first_name,last_name,email,mobile_no,value) => dispatch(addMember(first_name,last_name,email,mobile_no,value))
   }
 }
 

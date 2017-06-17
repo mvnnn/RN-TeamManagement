@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import people from './people'
+import member from './member'
 
 const rootReducer = combineReducers({
-    people
+    member
 })
 
 export default rootReducer

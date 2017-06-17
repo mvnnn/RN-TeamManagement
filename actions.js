@@ -1,33 +1,33 @@
-import { FETCHING_PEOPLE, FETCHING_PEOPLE_SUCCESS, FETCHING_PEOPLE_FAILURE, ADD_MEMBER, EDIT_MEMBER, DELETE_MEMBER } from './constants'
-import getPeoples from './api'
+import { FETCHING_MEMBER, FETCHING_MEMBER_SUCCESS, FETCHING_MEMBER_FAILURE, ADD_MEMBER, EDIT_MEMBER, DELETE_MEMBER } from './constants'
+import getMembers from './api'
 
 export function fetchData() {
   return (dispatch) => {
-    dispatch(getPeople())
-    getPeoples()
+    dispatch(getMember())
+    getMembers()
       .then((data) => {
-        dispatch(getPeopleSuccess(data))
+        dispatch(getMemberSuccess(data))
       })
       .catch((err) => console.log('err:', err))
   }
 }
 
-export function getPeople() {
+export function getMember() {
   return {
-    type: FETCHING_PEOPLE
+    type: FETCHING_MEMBER
   }
 }
 
-export function getPeopleSuccess(data) {
+export function getMemberSuccess(data) {
   return {
-    type: FETCHING_PEOPLE_SUCCESS,
+    type: FETCHING_MEMBER_SUCCESS,
     data
   }
 }
 
-export function getPeopleFailure() {
+export function getMemberFailure() {
   return {
-    type: FETCHING_PEOPLE_FAILURE
+    type: FETCHING_MEMBER_FAILURE
   }
 }
 

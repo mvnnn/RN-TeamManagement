@@ -27,10 +27,15 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     margin: 10
   },
-  subTitle:{
+  subTitle1:{
     fontWeight:'bold',
     color:'black',
     fontSize:15,
+    padding:10
+  },
+  subTitle:{
+    color:'grey',
+    fontSize:17,
     padding:10
   },
   radioButton:{
@@ -97,7 +102,8 @@ class EditMember extends Component {
     //  const {dispatch} = this.props;
     return (
       <View style={{paddingTop:50}}>
-      <Text style={styles.subTitle}>Info</Text>
+      <Text style={styles.subTitle}>Edit contact info, location and role.</Text>
+      <Text style={styles.subTitle1}>Info</Text>
       <TextInput
         placeholder="Enter First Name"
         placeholderTextColor="grey"
@@ -130,7 +136,7 @@ class EditMember extends Component {
         onChange={this.mobileNumberChange.bind(this)}
         value={this.state.mobile_no}
       />
-      <Text style={styles.subTitle}>Role</Text>
+      <Text style={styles.subTitle1}>Role</Text>
       <RadioForm
           radio_props={radio_props}
           initial={this.props.role}
@@ -145,7 +151,7 @@ class EditMember extends Component {
         <View style={{justifyContent: 'center', alignItems: 'center',paddingTop:15}}>
           <TouchableHighlight
             style={[styles.button, {backgroundColor: 'white',borderColor: 'grey',}]}
-            onPress={() => this.props.removePeople(this.state.email)}
+            onPress={() => this.props.removeMember(this.state.email)}
             underlayColor="#b380ff">
             <Text style={[styles.buttonText,{color:'red'}]}>Delete</Text>
           </TouchableHighlight>
@@ -153,7 +159,7 @@ class EditMember extends Component {
         <View style={{justifyContent: 'center', alignItems: 'center',paddingTop:15}}>
           <TouchableHighlight
             style={styles.button}
-            onPress={() => this.props.editPeople(this.state.first_name,this.state.last_name,this.state.email,this.state.mobile_no, this.state.value)}
+            onPress={() => this.props.editMember(this.state.first_name,this.state.last_name,this.state.email,this.state.mobile_no, this.state.value)}
             underlayColor="#b380ff">
             <Text style={styles.buttonText}>Save</Text>
           </TouchableHighlight>
@@ -167,14 +173,14 @@ class EditMember extends Component {
 
 function mapStateToProps (state) {
   return {
-    people: state.people
+    member: state.member
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    editPeople: (first_name,last_name,email,mobile_no,value) => dispatch(editMember(first_name,last_name,email,mobile_no,value)),
-    removePeople: (email) => dispatch(deleteMember(email))
+    editMember: (first_name,last_name,email,mobile_no,value) => dispatch(editMember(first_name,last_name,email,mobile_no,value)),
+    removeMember: (email) => dispatch(deleteMember(email))
   }
 }
 

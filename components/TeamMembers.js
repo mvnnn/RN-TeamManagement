@@ -16,7 +16,7 @@ class TeamMembers extends Component {
  }
 
  componentDidMount(){
-   this.props.getPeople();
+   this.props.getMember();
  }
 
  render() {
@@ -26,15 +26,16 @@ class TeamMembers extends Component {
     button,
     buttonText
   } = styles
-  const { people, isFetching } = this.props.people;
+  const { member, isFetching } = this.props.member;
   return (
     <View style={container}>
+      <Text style={styles.subTitle}>You have {member.length} team Members</Text>
       {
         isFetching && <Text>Loading</Text>
       }
       {
-        people.length ? (
-          people.map((person, i) => {
+        member.length ? (
+          member.map((person, i) => {
             return <Card key={i} style={{flexDirection:'row', marginTop: -5}}>
                           <View style={{flexDirection:'column'}}>
                           <TouchableHighlight
@@ -70,7 +71,7 @@ class TeamMembers extends Component {
 
 styles = StyleSheet.create({
   container: {
-    marginTop: 100,
+    marginTop: 60,
     paddingLeft: 20,
     paddingRight: 20
   },
@@ -85,18 +86,23 @@ styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white'
+  },
+  subTitle: {
+    fontSize: 16,
+    paddingBottom: 10,
+    color:'black'
   }
 })
 
 function mapStateToProps (state) {
   return {
-    people: state.people
+    member: state.member
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    getPeople: () => dispatch(fetchData())
+    getMember: () => dispatch(fetchData())
   }
 }
 
