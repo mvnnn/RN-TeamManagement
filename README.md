@@ -1,4 +1,4 @@
-#Quick Start
+# Quick Start
   ```
   $ npm install
   $ react-native run-android
