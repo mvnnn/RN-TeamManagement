@@ -6,11 +6,12 @@ import {
   Text,
   Dimensions,
   TouchableHighlight
-} from 'react-native';
-import {Scene, Actions, Router} from 'react-native-router-flux';
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import { connect } from 'react-redux';
-import { editMember, deleteMember } from '../actions';
+} from 'react-native'
+import {Scene, Actions, Router} from 'react-native-router-flux'
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
+import { connect } from 'react-redux'
+import { Divider } from 'react-native-material-design'
+import { editMember, deleteMember } from '../actions'
 const {height, width} = Dimensions.get('window');
 const radio_props = [
   {label: "Regular - can't delete memebers", value: 0 },
@@ -103,6 +104,7 @@ class EditMember extends Component {
     return (
       <View style={{paddingTop:50}}>
       <Text style={styles.subTitle}>Edit contact info, location and role.</Text>
+      <Divider />
       <Text style={styles.subTitle1}>Info</Text>
       <TextInput
         placeholder="Enter First Name"

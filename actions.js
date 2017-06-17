@@ -31,24 +31,24 @@ export function getMemberFailure() {
   }
 }
 
-export function addMember(first_name, last_name, email, contact_no, role) {
+export function addMember(first_name, last_name, email, mobile_no, role) {
   return {
     type: ADD_MEMBER,
     first_name,
     last_name,
     email,
-    contact_no,
+    mobile_no,
     role
   }
 }
 
-export function editMember(first_name, last_name, email, contact_no, role) {
+export function editMember(first_name, last_name, email, mobile_no, role) {
   return {
     type: EDIT_MEMBER,
     first_name,
     last_name,
     email,
-    contact_no,
+    mobile_no,
     role
   }
 }

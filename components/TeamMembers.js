@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TouchableHighlight, View, Text, StyleSheet, Dimensions, Image } from 'react-native'
+import { TouchableHighlight, View, Text, StyleSheet, Dimensions, Image, ScrollView } from 'react-native'
 
 import { connect } from 'react-redux'
 import { fetchData } from '../actions'
@@ -29,7 +29,9 @@ class TeamMembers extends Component {
   const { member, isFetching } = this.props.member;
   return (
     <View style={container}>
+      <ScrollView>
       <Text style={styles.subTitle}>You have {member.length} team Members</Text>
+      <Divider style={{marginBottom:5}}/>
       {
         isFetching && <Text>Loading</Text>
       }
@@ -46,7 +48,7 @@ class TeamMembers extends Component {
                             <Card.Body>
                               <View style={{flexDirection:'row'}}>
                               <Avatar image={<Image source= {require("../images/people.png")} /> } backgroundColor="paperGrey"/>
-                            <View style={{flexDirection:'column'}}>
+                            <View style={{flexDirection:'column', paddingLeft:10}}>
                             <View style={{marginLeft:5,flexDirection:'row'}}>
                               <Text style={{color:'black'}}>{person['first_name']}</Text>
                               <Text style={{marginLeft:5,color:'black'}}>{person['last_name']}</Text>
@@ -58,12 +60,13 @@ class TeamMembers extends Component {
                             </Card.Body>
                           </View>
                           </TouchableHighlight>
-                          <Divider/>
+                          <Divider style={{width:(0.9)*width}}/>
                         </View>
                         </Card>
           })
         ) : null
       }
+      </ScrollView>
     </View>
   )
 }
@@ -71,7 +74,7 @@ class TeamMembers extends Component {
 
 styles = StyleSheet.create({
   container: {
-    marginTop: 60,
+    marginTop: 70,
     paddingLeft: 20,
     paddingRight: 20
   },
@@ -89,8 +92,8 @@ styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 16,
-    paddingBottom: 10,
-    color:'black'
+    color:'black',
+    marginBottom: 5
   }
 })
 

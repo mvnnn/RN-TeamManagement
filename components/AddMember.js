@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import {Scene, Actions, Router} from 'react-native-router-flux';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import { Divider } from 'react-native-material-design'
 import { addMember } from '../actions';
 const {height, width} = Dimensions.get('window');
 const radio_props = [
@@ -103,6 +104,7 @@ class AddMember extends Component {
     return (
       <View style={{paddingTop:50}}>
       <Text style={styles.subTitle}>Set email, location and role.</Text>
+      <Divider />
       <Text style={styles.subTitle1}>Info</Text>
       <TextInput
         placeholder="Enter First Name"
