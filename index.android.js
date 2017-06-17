@@ -8,6 +8,7 @@ import configureStore from './configureStore'
 // import App from './app'
 import TeamMembers from './components/TeamMembers'
 import AddMember from './components/AddMember'
+import EditMember from './components/EditMember'
 import {
   Scene,
   Reducer,
@@ -37,6 +38,7 @@ const Team = () => (
     <Scene key="root" navigationBarStyle={{backgroundColor:'#944dff'}} titleStyle={{color:'white'}} backButtonImage={require('./images/back.png')} >
       <Scene key="teamMembers" initial={true} component={TeamMembers} title="Team Members" onRight={() => Actions.addMember()} rightButtonImage={require('./images/plus.png')} />
       <Scene key="addMember" component={AddMember} title="add a team member" onRight={() => Actions.teamMembers()} rightButtonImage={require('./images/close.png')} />
+      <Scene key="editMember" component={EditMember} title="Edit team member" onRight={() => Actions.teamMembers()} rightButtonImage={require('./images/close.png')} />
     </Scene>
     </Router>
     </Provider>

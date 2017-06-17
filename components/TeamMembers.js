@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { fetchData } from '../actions'
 const {height, width} = Dimensions.get('window')
 import { Card, Avatar, Divider } from 'react-native-material-design'
+import {Scene, Actions, Router} from 'react-native-router-flux'
+
 
 let styles
 
@@ -18,7 +20,6 @@ const TeamMembers = (props) => {
   const { people, isFetching } = props.people;
   return (
     <View style={container}>
-      <Text style={text}>Redux Example</Text>
       <TouchableHighlight style={button} onPress={() => props.getPeople()}>
         <Text style={buttonText}>Load People</Text>
       </TouchableHighlight>
@@ -32,6 +33,7 @@ const TeamMembers = (props) => {
                           <View style={{flexDirection:'column'}}>
                           <TouchableHighlight
                             key={i}
+                            onPress={() => Actions.editMember({first_name:person.first_name,last_name:person.last_name,email:person.email,mobile_no:person.mobile_no, role:person.role})}
                             underlayColor="#666666">
                             <View style={{flexDirection:'row'}}>
                             <Card.Body>
